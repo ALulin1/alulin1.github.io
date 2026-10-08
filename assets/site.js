@@ -2,15 +2,20 @@
   'use strict';
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
+  const publicationsDisclosure = document.querySelector('.publications-disclosure');
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
   });
   nav?.addEventListener('click', event => {
-    if (event.target.closest('a')) {
+    const link = event.target.closest('a');
+    if (link) {
       nav.classList.remove('is-open');
       toggle?.setAttribute('aria-expanded', 'false');
+      if (link.getAttribute('href') === '#publications' && publicationsDisclosure) {
+        publicationsDisclosure.open = true;
+      }
     }
   });
 
@@ -48,6 +53,39 @@
       });
       filterPublications();
     }));
+  }
+
+  if (publicationsDisclosure) {
+    const revealPublications = () => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      if (target?.id === 'publications' || (target && publicationsDisclosure.contains(target))) {
+        publicationsDisclosure.open = true;
+        if (target.closest('.publication-item')?.hidden && search) {
+          search.value = '';
+          category = 'all';
+          filterButtons.forEach(button => {
+            const active = button.dataset.filter === 'all';
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', String(active));
+          });
+          filterPublications();
+        }
+        if (target.closest('.publication-item')) {
+          requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+        }
+      }
+    };
+    window.addEventListener('hashchange', revealPublications);
+    revealPublications();
+    let publicationPrintState = null;
+    window.addEventListener('beforeprint', () => {
+      if (publicationPrintState === null) publicationPrintState = publicationsDisclosure.open;
+      publicationsDisclosure.open = true;
+    });
+    window.addEventListener('afterprint', () => {
+      if (publicationPrintState !== null) publicationsDisclosure.open = publicationPrintState;
+      publicationPrintState = null;
+    });
   }
 
   const citationData = document.querySelector('#citation-data');
