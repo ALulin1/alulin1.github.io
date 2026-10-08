@@ -1,0 +1,180 @@
+{
+  "name": "Chao Li",
+  "email": "chaoli@itmo.ru",
+  "scholar_url": "https://scholar.google.com/citations?user=dNceqZUAAAAJ&hl=en",
+  "updated": "2026-10-08",
+  "intro": "I am a Senior Researcher at Sirius University of Science and Technology and a Ph.D. Candidate at ITMO University. My research focuses on how norms emerge, spread, and guide decisions in multi-agent systems. I combine mathematical modelling, agent-based simulation, and machine learning to study collective behaviour and human–AI interaction, with applications in healthcare, software engineering and the social sciences. As a core member of the TacitAI project, I investigate decision modelling in distributed and hybrid cognitive systems under incomplete information.",
+  "affiliations": [
+    "Senior Researcher · Sirius University of Science and Technology",
+    "Engineer · ITMO University",
+    "Ph.D. Candidate · ITMO University"
+  ],
+  "research": [
+    {
+      "title": "Norm Dynamics in Multi-Agent Systems",
+      "description": "Descriptive norms, norm perception and induction, and the connection between individual decisions and collective behaviour."
+    },
+    {
+      "title": "Hybrid Cognitive Systems and Tacit Knowledge",
+      "description": "Decision modelling under incomplete information, knowledge representation, and normative reasoning."
+    },
+    {
+      "title": "Human–AI Interaction and Decision Support",
+      "description": "Interpretable modelling and simulation for distributed healthcare and intelligent decision support."
+    }
+  ],
+  "supervisor": {
+    "name": "Sergey V. Kovalchuk",
+    "degree": "Ph.D.",
+    "role": "Scientific supervisor",
+    "affiliations": [
+      "Associate Professor · Faculty of AI Technologies, ITMO University",
+      "Research Group Leader · Research Center for IT and AI, Sirius University of Science and Technology",
+      "Principal Engineer · Huawei Research Institute, Saint Petersburg, Russia"
+    ],
+    "url": "https://iterater.github.io/"
+  },
+  "projects": [
+    {
+      "id": "tacitai",
+      "dates": "2026–Present",
+      "title": "Hybrid Cognitive Systems for Decision-Making Based on Tacit Knowledge under Incomplete Information (TacitAI)",
+      "institution": "Sirius University of Science and Technology",
+      "description": "Research on formalising tacit knowledge and modelling decisions in distributed and hybrid cognitive systems. The work explores adaptive intelligent decision support under incomplete information.",
+      "role": "Core team member; independently responsible for the research direction on decision-modelling technologies in distributed and hybrid cognitive systems",
+      "funding": "State Programme for Scientific and Technological Development of the Sirius Federal Territory",
+      "reference": "Project FTS-2026-2.3-VY-2454-8945",
+      "topics": [
+        "Tacit-knowledge formalisation",
+        "Hybrid cognitive systems",
+        "Distributed decision modelling",
+        "Adaptive intelligent decision support"
+      ]
+    },
+    {
+      "id": "ai-centers",
+      "dates": "2025–2026",
+      "title": "Breakthrough Research in Artificial Intelligence Conducted by AI Research Centers",
+      "institution": "Research Center ‘Strong Artificial Intelligence in Industry’, ITMO University",
+      "description": "Research on large foundation models, large language models, machine learning and multi-agent systems.",
+      "role": "Research team member",
+      "funding": "Ministry of Economic Development of the Russian Federation",
+      "reference": "Project 325086; state registration 125080409305-1",
+      "topics": [
+        "Large foundation models",
+        "Large language models",
+        "Machine learning",
+        "Multi-agent systems"
+      ]
+    },
+    {
+      "id": "human-ai",
+      "dates": "2024–2026",
+      "title": "Intelligent Decision-Support Technologies Based on Modelling and Control of Human–AI Interaction",
+      "institution": "National Center for Cognitive Research, ITMO University",
+      "description": "Modelling and control of human–AI interaction for intelligent decision support, with an emphasis on explainable AI and behaviour modelling.",
+      "role": "Research team member",
+      "funding": "Russian Science Foundation (RSF)",
+      "reference": "Project 324047; state registration 124052400016-3",
+      "topics": [
+        "Human–computer interaction",
+        "Explainable AI",
+        "Decision support",
+        "Behaviour modelling"
+      ]
+    },
+    {
+      "id": "strong-ai",
+      "dates": "2021–2024",
+      "title": "Strong Artificial Intelligence Technologies in Industry",
+      "institution": "Research Center ‘Strong Artificial Intelligence in Industry’, ITMO University",
+      "description": "Research and development on strong AI and digital solutions, including digital twins and digital objects.",
+      "role": "Research team member",
+      "funding": "Exploratory R&D funded by the Analytical Center for the Government of the Russian Federation",
+      "reference": "Project 321315; state registration 121121300433-5",
+      "topics": [
+        "Strong AI",
+        "Digital solutions",
+        "Digital twins",
+        "Digital objects"
+      ]
+    },
+    {
+      "id": "guide-cane",
+      "dates": "2019–2020",
+      "title": "Intelligent Guide Cane for the Visually Impaired",
+      "institution": "Nanchang University ‘Internet+’ Innovation and Entrepreneurship Competition",
+      "description": "Design and implementation of an assistive cane using IoT sensing, structured-light image reconstruction, embedded navigation and audio feedback.",
+      "role": "Team member (system design and implementation)",
+      "funding": "",
+      "reference": "",
+      "topics": [
+        "IoT sensing",
+        "Structured-light image reconstruction",
+        "Embedded navigation",
+        "Audio feedback"
+      ]
+    }
+  ],
+  "appointments": [
+    {
+      "dates": "2026–Present",
+      "title": "Senior Researcher",
+      "institution": "Scientific Center for Information Technology and Artificial Intelligence, Sirius University of Science and Technology, Sirius Federal Territory (Sochi), Russia"
+    },
+    {
+      "dates": "2026–Present",
+      "title": "Engineer",
+      "institution": "Research Center for Artificial Intelligence ‘Strong Artificial Intelligence in Industry’, ITMO University, Saint Petersburg, Russia"
+    },
+    {
+      "dates": "2024–2026",
+      "title": "Engineer",
+      "institution": "National Center for Cognitive Research (NCCR), ITMO University, Saint Petersburg, Russia"
+    },
+    {
+      "dates": "2022–2023",
+      "title": "Engineer (Intern)",
+      "institution": "ROBOTRACK, a brand of Brain Development LLC, Saint Petersburg, Russia"
+    },
+    {
+      "dates": "2020–2021",
+      "title": "Intern",
+      "institution": "Industrial and Commercial Bank of China (ICBC), China"
+    }
+  ],
+  "education": [
+    {
+      "dates": "2023–Present",
+      "title": "Ph.D. Candidate in Mathematical Modelling, Numerical Methods and Software Complexes",
+      "institution": "Faculty of Artificial Intelligence Technologies, ITMO University"
+    },
+    {
+      "dates": "2020–2023",
+      "title": "M.Sc. in Software Engineering for Neurotechnologies",
+      "institution": "Faculty of Software Engineering and Computer Technology, ITMO University"
+    },
+    {
+      "dates": "2016–2020",
+      "title": "B.Sc. in Information Security",
+      "institution": "School of Software Engineering, Nanchang University"
+    }
+  ],
+  "exchange": [
+    {
+      "dates": "2026",
+      "title": "Deutsches Elektronen-Synchrotron (DESY), Hamburg, Germany",
+      "description": "International Conference on Computational Science (ICCS 2026) — presentation in the Computational Health track."
+    },
+    {
+      "dates": "July 2025",
+      "title": "Nanyang Technological University, Singapore",
+      "description": "High Performance Computing Institute."
+    },
+    {
+      "dates": "June 2024",
+      "title": "University of Málaga, Spain",
+      "description": "International Conference on Computational Science."
+    }
+  ]
+}
