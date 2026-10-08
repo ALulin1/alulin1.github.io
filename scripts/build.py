@@ -213,6 +213,10 @@ def publication_section(entries, interactive=True):
 def project_section(profile):
     html = section_start("projects", "Research projects", "From collective behaviour to intelligent decision support.") + '<div class="project-list">'
     for project in profile["projects"]:
+        announcement = ""
+        if project.get("announcement_url"):
+            label = project.get("announcement_label", "Official project approval announcement")
+            announcement = f'<p class="project-link"><a href="{escape(project["announcement_url"])}" target="_blank" rel="noopener noreferrer">{escape(label)} <span aria-hidden="true">↗</span></a></p>'
         details = ""
         if project["funding"] or project["reference"]:
             details = f'''<details class="project-details"><summary>Funding &amp; project details</summary>
@@ -223,7 +227,7 @@ def project_section(profile):
           <p class="project-meta">{escape(project['institution'])}</p>
           <p>{escape(project['description'])}</p>
           <p class="project-role"><strong>My role</strong> · {escape(project['role'])}</p>
-          {details}</div></article>'''
+          {announcement}{details}</div></article>'''
     return html + "</div></section>"
 
 
