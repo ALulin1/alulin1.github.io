@@ -172,7 +172,13 @@ def section_start(anchor, title, lede=""):
 
 
 def publication_section(entries, interactive=True):
-    html = section_start("publications", "Publications &amp; talks", "Research papers, conference contributions and teaching material.")
+    if interactive:
+        html = '''<section id="publications" class="section" aria-labelledby="publications-heading">
+          <details class="publications-disclosure">
+            <summary class="section-heading publications-summary"><h2 id="publications-heading">Publications &amp; talks<span class="publications-disclosure-icon" aria-hidden="true"></span></h2></summary>
+            <div class="publications-panel"><p class="section-lede">Research papers, conference contributions and teaching material.</p>'''
+    else:
+        html = section_start("publications", "Publications &amp; talks", "Research papers, conference contributions and teaching material.")
     if interactive:
         counts = Counter(CATEGORIES[item["id"]][0] for item in entries)
         buttons = []
@@ -207,7 +213,7 @@ def publication_section(entries, interactive=True):
     if interactive:
         html += '<p class="empty-state" hidden>No matching publications. Try another search or choose All.</p>'
         html += '<p class="bibliography-link"><a href="assets/publications.bib" download>Download complete bibliography <span aria-hidden="true">↓</span></a></p>'
-    return html + "</section>"
+    return html + ("</div></details></section>" if interactive else "</section>")
 
 
 def project_section(profile):
