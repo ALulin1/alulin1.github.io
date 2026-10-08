@@ -2,7 +2,7 @@ title: Chao Li
 description: Multi-agent norm dynamics, hybrid cognitive systems, and human–AI interaction.
 theme: minima
 url: "https://alulin1.github.io"
-baseurl: "https://alulin1.github.io"
+baseurl: ""
 exclude:
   - scripts
   - data
