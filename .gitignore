@@ -1,0 +1,12 @@
+dist/
+_site/
+.jekyll-cache/
+.bundle/
+vendor/
+.DS_Store
+*.tar.gz
+*.zip
+!assets/chao-li-cv-source.zip
+tmp/
+__pycache__/
+*.py[cod]
