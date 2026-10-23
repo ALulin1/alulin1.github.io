@@ -22,4 +22,4 @@ python3 -m http.server 8000 --directory dist --bind 127.0.0.1
 
 Open http://127.0.0.1:8000/ and press Ctrl+C to stop the preview.
 
-The manuscripts listed on the site retain their actual submission status; they are not marked as accepted or published.
+The Mathematics paper is listed with its final published title and DOI (21 October 2026). The Expert Systems with Applications manuscript retains its submission status.

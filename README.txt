@@ -1,5 +1,5 @@
 Chao Li academic homepage
-Updated: 2026-10-08
+Updated: 2026-10-23
 
 This is a complete single-page English academic homepage. All 17 research outputs,
 all 5 projects, the scientific supervisor, education, appointments and contact
@@ -39,16 +39,15 @@ Maintain the website
 - Update the updated field in data/profile.json when revising the content.
 
 CV and citations
-- assets/chao-li-cv.pdf is the downloadable CV, updated 8 October 2026.
+- assets/chao-li-cv.pdf is the downloadable CV, updated 23 October 2026.
 - cv.html also provides a printable web CV. Its Print / save as PDF button opens
   the browser's print dialog.
 - assets/chao-li-cv-source.zip contains the updated LaTeX CV source, including
-  the Senior Researcher title, the two manuscript updates, and all three
+  the Senior Researcher title, the publication updates, and all three
   supervisor appointments confirmed by the owner.
-- assets/publications.bib contains 17 research outputs, including a Mathematics
-  manuscript after its first-round revision and an Expert Systems with
-  Applications submission currently with the editor. These are not marked as
-  accepted or published.
+- assets/publications.bib contains 17 research outputs, including the Mathematics
+  article published on 21 October 2026 (DOI: 10.3390/math14203837) and an Expert
+  Systems with Applications submission currently with the editor.
 - Publications are present in the initial HTML. Search and type filters are
   optional enhancements; they do not hide outputs by default.
 - There are no analytics, tracking cookies, third-party fonts or databases.
