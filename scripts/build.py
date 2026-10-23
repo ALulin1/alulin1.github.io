@@ -13,7 +13,7 @@ DATA = ROOT / "data"
 DIST = ROOT / "dist"
 
 CATEGORIES = {
-    "li2026bdcc": ("review", "Manuscript"),
+    "li2026bdcc": ("journal", "Journal article"),
     "li2026eswa": ("review", "Manuscript"),
     "li2025jbi": ("journal", "Journal article"),
     "li2023semanticsearch": ("journal", "Journal article"),
@@ -201,13 +201,14 @@ def publication_section(entries, interactive=True):
             status_class = "status-label" if category == "review" else "type-label"
             status_note = f'<p class="pub-status-note">{escape(fields["note"])}</p>' if category == "review" and fields.get("note") else ""
             button = f'<button hidden type="button" class="citation-button" data-citation="{entry["id"]}" aria-label="View BibTeX for {escape(fields["title"], quote=True)}">BibTeX</button>' if interactive else ""
+            doi_link = f'<a href="https://doi.org/{escape(fields["doi"], quote=True)}" target="_blank" rel="noopener noreferrer">DOI: {escape(fields["doi"])} <span aria-hidden="true">↗</span></a>' if fields.get("doi") else ""
             html += f'''<li id="pub-{entry['id']}" class="publication-item" data-category="{category}">
               <div class="pub-meta"><span class="{status_class}">{escape(label)}</span></div>
               <h4 class="pub-title">{escape(fields['title'])}</h4>
               <p class="pub-authors">{authors(fields['author'])}</p>
               <p class="pub-venue">{venue(entry)}</p>
               {status_note}
-              {f'<div class="pub-actions">{button}</div>' if button else ''}
+              {f'<div class="pub-actions">{doi_link}{button}</div>' if doi_link or button else ''}
             </li>'''
         html += "</ul></div>"
     if interactive:
