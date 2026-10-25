@@ -11,6 +11,8 @@ from datetime import date
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 DIST = ROOT / "dist"
+SITE_URL = "https://alulin1.github.io"
+RESOURCES = json.loads((DATA / "publication_resources.json").read_text(encoding="utf-8"))
 
 CATEGORIES = {
     "li2026bdcc": ("journal", "Journal article"),
@@ -25,17 +27,17 @@ CATEGORIES = {
     "kovalchuk2024wiiat": ("conference", "Conference paper"),
     "kovalchuk2026rl": ("teaching", "Study guide"),
     "li2026cogsci": ("abstract", "Conference abstract"),
-    "tarasov2026roles": ("abstract", "Conference abstract / talk"),
+    "tarasov2026roles": ("conference", "Conference paper"),
     "li2025apsara": ("abstract", "Conference talk"),
-    "li2024congress": ("abstract", "Conference abstract"),
-    "li2024itmoconf": ("abstract", "Conference abstract / talk"),
+    "li2024congress": ("conference", "Conference paper"),
+    "li2024itmoconf": ("abstract", "Conference talk"),
     "li2024cane": ("abstract", "Conference abstract / talk"),
 }
 
 
 def plain(value):
     value = re.sub(r"\\(?:textbf|emph|textit|texttt)\{([^{}]*)\}", r"\1", value)
-    value = value.replace(r"\&", "&").replace(r"\_", "_")
+    value = value.replace(r"\&", "&").replace(r"\_", "_").replace(r"\#", "#")
     value = value.replace("{", "").replace("}", "")
     value = value.replace("---", "—").replace("--", "–")
     return re.sub(r"\s+", " ", value).strip()
@@ -202,13 +204,25 @@ def publication_section(entries, interactive=True):
             status_note = f'<p class="pub-status-note">{escape(fields["note"])}</p>' if category == "review" and fields.get("note") else ""
             button = f'<button hidden type="button" class="citation-button" data-citation="{entry["id"]}" aria-label="View BibTeX for {escape(fields["title"], quote=True)}">BibTeX</button>' if interactive else ""
             doi_link = f'<a href="https://doi.org/{escape(fields["doi"], quote=True)}" target="_blank" rel="noopener noreferrer">DOI: {escape(fields["doi"])} <span aria-hidden="true">↗</span></a>' if fields.get("doi") else ""
+            resource = RESOURCES.get(entry["id"], {})
+            resource_links = []
+            if resource.get("pdf"):
+                resource_links.append(f'<a href="{escape(resource["pdf"])}">{escape(resource["pdf_label"])}</a>')
+                resource_links.append(f'<a href="publication-{entry["id"]}.html">Details &amp; sources</a>')
+            elif resource.get("links"):
+                source = resource["links"][0]
+                resource_links.append(f'<a href="{escape(source["url"])}" target="_blank" rel="noopener noreferrer">Conference record <span aria-hidden="true">↗</span></a>')
+            title = escape(fields['title'])
+            if resource.get("pdf"):
+                title = f'<a href="publication-{entry["id"]}.html">{title}</a>'
+            actions = doi_link + "".join(resource_links) + button
             html += f'''<li id="pub-{entry['id']}" class="publication-item" data-category="{category}">
               <div class="pub-meta"><span class="{status_class}">{escape(label)}</span></div>
-              <h4 class="pub-title">{escape(fields['title'])}</h4>
+              <h4 class="pub-title">{title}</h4>
               <p class="pub-authors">{authors(fields['author'])}</p>
               <p class="pub-venue">{venue(entry)}</p>
               {status_note}
-              {f'<div class="pub-actions">{doi_link}{button}</div>' if doi_link or button else ''}
+              {f'<div class="pub-actions">{actions}</div>' if actions else ''}
             </li>'''
         html += "</ul></div>"
     if interactive:
@@ -311,20 +325,75 @@ def curriculum_vitae(profile, entries):
     return html + "</main>" + footer(profile)
 
 
+def publication_page(profile, entry, resource):
+    """A stable reading page for a single work, its PDF and verifiable sources."""
+    fields = entry["fields"]
+    key = entry["id"]
+    title = resource.get("original_title", fields["title"])
+    canonical = f"{SITE_URL}/publication-{key}.html"
+    meta = [("citation_title", title), ("citation_publication_date", fields["year"]),
+            ("citation_pdf_url", f"{SITE_URL}/{resource['pdf']}"),
+            ("citation_language", resource.get("language", "en"))]
+    for author in re.split(r"\s+and\s+", fields["author"]):
+        meta.append(("citation_author", author))
+    for field, tag in [("doi", "citation_doi"), ("volume", "citation_volume"),
+                       ("isbn", "citation_isbn"), ("publisher", "citation_publisher")]:
+        value = fields.get(field) or resource.get(field)
+        if value:
+            meta.append((tag, value))
+    if fields.get("booktitle"):
+        meta.append(("citation_conference_title", fields["booktitle"]))
+    if fields.get("pages"):
+        pages = fields["pages"].split("–")
+        meta.extend([("citation_firstpage", pages[0]), ("citation_lastpage", pages[-1])])
+    metadata = "\n".join(f'  <meta name="{name}" content="{escape(value, quote=True)}">' for name, value in meta)
+    html = head(profile, cv=True).replace(" | Curriculum Vitae", " | " + escape(fields["title"]))
+    html = html.replace('<body class="cv-page">', '<body class="publication-page">')
+    html = html.replace("</head>", f'  <link rel="canonical" href="{canonical}">\n{metadata}\n</head>')
+    html += header(profile, cv=True) + '<main id="main-content" class="wrapper publication-reading">'
+    html += f'<article><p class="eyebrow">{escape(CATEGORIES[key][1])} · {fields["year"]}</p><h1>{escape(title)}</h1>'
+    if resource.get("original_title"):
+        html += f'<p class="publication-translation">{escape(fields["title"])}</p>'
+    html += f'<p class="pub-authors">{authors(fields["author"])}</p><p class="pub-venue">{venue(entry)}</p>'
+    html += f'<p class="publication-download"><a class="button" href="{escape(resource["pdf"])}">{escape(resource["pdf_label"])}</a></p>'
+    html += f'<section class="publication-abstract" aria-labelledby="abstract-heading"><h2 id="abstract-heading">{escape(resource["text_heading"])}</h2><p>{escape(resource["text"])}</p></section>'
+    html += '<section class="publication-sources" aria-labelledby="sources-heading"><h2 id="sources-heading">Publication &amp; sources</h2>'
+    html += f'<p class="publication-version">{escape(resource["version"])}</p>'
+    if resource.get("note"):
+        html += f'<p>{escape(resource["note"])}</p>'
+    isbn = fields.get("isbn") or resource.get("isbn")
+    if isbn:
+        html += f'<p>ISBN {escape(isbn)}</p>'
+    html += '<ul>'
+    if fields.get("doi"):
+        html += f'<li><a href="https://doi.org/{escape(fields["doi"])}">DOI: {escape(fields["doi"])}</a></li>'
+    html += ''.join(f'<li><a href="{escape(link["url"])}">{escape(link["label"])}</a></li>' for link in resource["links"])
+    html += '</ul></section>'
+    html += f'<div class="pub-actions"><button hidden type="button" class="citation-button" data-citation="{key}">BibTeX</button><a href="index.html#pub-{key}">Back to publications</a></div>'
+    return html + '</article></main>' + dialog_markup([entry]) + footer(profile)
+
+
 def main():
     profile = json.loads((DATA / "profile.json").read_text(encoding="utf-8"))
     bibliography = (DATA / "publications.bib").read_text(encoding="utf-8")
     entries = parse_bib(bibliography)
     assert entries, "Bibliography must not be empty."
+    assert set(RESOURCES).issubset({entry["id"] for entry in entries}), "Resource refers to an unknown work."
+    for resource in RESOURCES.values():
+        if resource.get("pdf"):
+            assert (ROOT / resource["pdf"]).is_file(), f"Missing PDF: {resource['pdf']}"
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "assets", DIST / "assets", dirs_exist_ok=True)
     for dest in [ROOT / "assets/publications.bib", DIST / "assets/publications.bib"]:
         dest.write_text(bibliography, encoding="utf-8")
-    for filename, content in [("index.html", homepage(profile, entries)), ("cv.html", curriculum_vitae(profile, entries))]:
+    pages = [("index.html", homepage(profile, entries)), ("cv.html", curriculum_vitae(profile, entries))]
+    pages += [(f'publication-{entry["id"]}.html', publication_page(profile, entry, RESOURCES[entry["id"]]))
+              for entry in entries if RESOURCES.get(entry["id"], {}).get("pdf")]
+    for filename, content in pages:
         (DIST / filename).write_text(content, encoding="utf-8")
         # Raw protects BibTeX's double braces from Liquid. Jekyll emits the same static page.
         (ROOT / filename).write_text("---\nlayout: null\n---\n{% raw %}\n" + content + "\n{% endraw %}\n", encoding="utf-8")
-    print(f"Built homepage and printable CV: {len(entries)} outputs, {len(profile['projects'])} projects.")
+    print(f"Built {len(pages)} pages: {len(entries)} outputs, {len(profile['projects'])} projects.")
     print("Static preview directory:", DIST)
 
 
