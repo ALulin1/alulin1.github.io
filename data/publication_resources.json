@@ -1,0 +1,116 @@
+{
+  "tarasov2026roles": {
+    "pdf": "assets/paper-tarasov2026roles.pdf",
+    "pdf_label": "Published paper (PDF)",
+    "text_heading": "English summary (prepared from the Russian text; not an original English abstract)",
+    "text": "This Russian-language conference paper reviews approaches to identifying developer roles from source-code repository data and explores temporal collaboration norms in open-source communities. It analyses commit timing, work-hour and weekend activity, contributor roles, and geographical context, comparing patterns across GitHub repositories as a preliminary step toward modelling role and norm dynamics.",
+    "version": "Published proceedings extract, original pages 338–343 retained.",
+    "links": [
+      {
+        "label": "Official proceedings · pp. 338–343",
+        "url": "https://konf.osu.ru/povtas/assets/files/conf_info/conf2/materials.pdf#page=338"
+      },
+      {
+        "label": "Conference and publication information",
+        "url": "https://konf.osu.ru/povtas/"
+      },
+      {
+        "label": "Official author and contribution record",
+        "url": "https://konf.osu.ru/povtas/registration/about_members/extra_info.html?id=202"
+      }
+    ],
+    "original_title": "Моделирование динамики ролей разработчиков программного обеспечения по данным репозиториев программного кода",
+    "language": "ru",
+    "note": "In Russian. The conference took place in Orenburg on 18–19 December 2025; the proceedings were published in 2026."
+  },
+  "li2026cogsci": {
+    "pdf": "assets/abstract-li2026cogsci.pdf",
+    "pdf_label": "Conference abstract (PDF)",
+    "text_heading": "Opening paragraph of the published conference abstract",
+    "text": "Norms embody constrained cognition of practice. Agents are the principal vehicle for AI deployment. Whereas individual alignment focuses on reasoning about an agent’s internal decision-making, multi-agent alignment entails reasoning about system-level norms, the established mechanism for governing collective behavior across organizations, communities, or simple aggregates. This study contrasts human-value-driven alignment with linear algebraic derivation. Multi-agent experiments are conducted to discern their comparative advantages.",
+    "version": "Extract from author-held conference collection, 22 August 2026 version; original printed pages 41–42 retained.",
+    "links": [
+      {
+        "label": "Official conference and proceedings information",
+        "url": "https://cogsci.neimark-it.ru/#authors"
+      },
+      {
+        "label": "Official collection · 21 September version",
+        "url": "https://cloud.mail.ru/public/H3m4/sYqQGtRD9"
+      },
+      {
+        "label": "Coauthor’s conference report",
+        "url": "https://iterater.github.io/2026/08/28/maki-2026.html"
+      }
+    ],
+    "language": "en",
+    "isbn": "978-5-908049-80-1",
+    "publisher": "Lobachevsky State University of Nizhny Novgorod",
+    "note": "Conference abstract, not a journal article. This PDF preserves the original complete pages, including neighbouring abstract fragments. The organiser’s website links to a later collection version dated 21 September 2026."
+  },
+  "li2025lncs15908": {
+    "pdf": "assets/paper-li2025lncs15908.pdf",
+    "pdf_label": "Camera-ready paper (PDF)",
+    "text_heading": "Abstract",
+    "text": "This study proposes an interpretable machine learning framework to model bidirectional dynamic interactions between macroscopic norms and microscopic features in clinical data. Leveraging real-world medical records from a specialized chest hospital (containing unstructured text, complex categorical variables, temporal indicators, and non-random missing patterns), we perform numerical processing through Latent Semantic Analysis and dimensionality reduction via Non-negative Matrix Factorization. Macroscopic therapeutic norms are identified using HDBSCAN clustering, while SHAP-XGBoost integration selects critical microscopic features, including multidrug-resistant tuberculosis diagnosis and liver function biomarkers. We integrate symbolic regression with the Peter-Clark Momentary Conditional Independence causal discovery method based on partial correlation, constructing cross-scale functional relationships with temporally rigorous constraints. Specifically, PySR derives nonlinear mapping equations, while partial correlation-based conditional independence tests establish time-lagged dynamic dependency networks. Guided by the Dynamic Maximum Entropy across Scales (DyMES) principle, multi-scale perturbation experiments reveal bidirectional mechanisms. Within our dataset and framework, DyMES reveals dynamic constraints’ interplay driving statistical equilibrium between macroscopic clinical norms and microscopic patient characteristics through nonlinear coordination and threshold-triggered time-encoded mechanisms. Persistent constraint interactions induce novel steady states formation with dynamically preserved system memory.",
+    "version": "ICCS Camera Ready Version 2025. Cite the final published DOI.",
+    "links": [
+      {
+        "label": "Publisher’s version and abstract",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-031-97557-8_9"
+      },
+      {
+        "label": "Official ICCS camera-ready PDF",
+        "url": "https://www.iccs-meeting.org/archive/iccs2025/papers/159080110.pdf"
+      }
+    ],
+    "language": "en"
+  },
+  "kovalchuk2026rl": {
+    "pdf": "assets/book-kovalchuk2025rl.pdf",
+    "pdf_label": "Published textbook (PDF)",
+    "text_heading": "Publisher description",
+    "text": "The textbook presents a practical hands-on to selected classes of problems in reinforcement learning with specific methods and algorithms extending basic curriculum in this area. Each topic covers a separate aspect of reinforcement learning application in the context of modeling the behavior of intelligent agents. The selected topics are considered as tasks to be studied in practical classes or as part of independent study.",
+    "version": "Published textbook PDF from authors public GitHub repository; 69 PDF pages including covers, bibliographic extent 67 pages.",
+    "links": [
+      {
+        "label": "Authors’ published PDF source",
+        "url": "https://github.com/iterater/abm_book_rl_practice/blob/main/build_results/book_published_v1.pdf"
+      },
+      {
+        "label": "Online teaching material",
+        "url": "https://iterater.github.io/education/rl_practice/"
+      }
+    ],
+    "language": "en",
+    "note": "Kazan: Buk, 2025. ISBN 978-5-00254-097-6. Bibliographic extent: 67 pages; the PDF includes the covers."
+  },
+  "li2024congress": {
+    "pdf": "assets/abstract-li2024congress.pdf",
+    "pdf_label": "Published paper (PDF)",
+    "language": "en",
+    "text_heading": "Abstract",
+    "text": "From the perspective of Distributed Intelligence, this study assesses the practical application of Artificial Intelligence (AI) in healthcare. It reveals that despite AI's efficacy across medical datasets, its deployment in healthcare settings is relatively limited. The research identifies a scarcity of technical studies directly focused on \"Distributed Intelligence in Healthcare\" and a lack of a specific developmental paradigm. It emphasizes the complex interactions between healthcare professionals (HCPs) and AI, highlighting the necessity of research on trust-building from a social value-sharing perspective and identifying gaps in technical implementation. Additionally, the study discusses the need for clear legal, operational norms, and protocols for HCPs using AI. Addressing these challenges will enable effective AI integration in healthcare, proposing a significant advancement in the field.",
+    "version": "Extracted unchanged from the official published proceedings, Vol. 3, ITMO University, 2024, pp. 61–64.",
+    "note": "The published paper is by Chao Li. Sergey V. Kovalchuk is credited as scientific supervisor. The electronic conference record below contains a related abstract version.",
+    "links": [
+      {
+        "label": "Official published proceedings · Vol. 3, pp. 61–64",
+        "url": "https://studnauka.itmo.ru/assets/files/sborniki/sbornik_kmu_13_tom_3_2024.pdf#page=61"
+      },
+      {
+        "label": "Official electronic abstract record",
+        "url": "https://kmu.itmo.ru/digests/article/12071"
+      }
+    ]
+  },
+  "li2024itmoconf": {
+    "links": [
+      {
+        "label": "Official conference programme · session on 30 January 2024",
+        "url": "https://science.itmo.ru/wp-content/uploads/2024/02/Программа_ППС2024_end2.pdf#page=104"
+      }
+    ],
+    "note": "Conference talk. Listed in subsection 19, Robotics and Artificial Intelligence II, 30 January 2024, 14:00, contribution 8. Programme page 103 is not a publication page range."
+  }
+}
