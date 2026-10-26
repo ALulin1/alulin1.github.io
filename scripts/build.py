@@ -18,7 +18,7 @@ CATEGORIES = {
     "li2026bdcc": ("journal", "Journal article"),
     "li2026eswa": ("review", "Manuscript"),
     "li2025jbi": ("journal", "Journal article"),
-    "li2023semanticsearch": ("journal", "Journal article"),
+    "li2023semanticsearch": ("thesis", "Master's thesis"),
     "li2026lncs16786": ("conference", "Conference paper"),
     "li2026rolecond": ("conference", "Conference paper"),
     "li2026icaart": ("conference", "Conference paper"),
@@ -79,7 +79,8 @@ def parse_bib(text):
                 CATEGORIES[key] = ("abstract", "Conference abstract / talk")
             else:
                 default = {"article": ("journal", "Journal article"), "inproceedings": ("conference", "Conference paper"),
-                           "book": ("teaching", "Study guide"), "misc": ("abstract", "Conference contribution")}
+                           "book": ("teaching", "Study guide"), "misc": ("abstract", "Conference contribution"),
+                           "mastersthesis": ("thesis", "Master's thesis")}
                 if match.group(1) not in default:
                     raise ValueError(f"Add a category for new bibliography entry: {key}")
                 CATEGORIES[key] = default[match.group(1)]
@@ -87,7 +88,7 @@ def parse_bib(text):
                         "fields": {name: plain(value) for name, value in fields.items()}})
     if len(entries) != len({item["id"] for item in entries}):
         raise ValueError("Duplicate bibliography keys")
-    category_order = {"journal": 0, "conference": 1, "abstract": 2, "teaching": 3, "review": 4}
+    category_order = {"journal": 0, "conference": 1, "abstract": 2, "teaching": 3, "review": 4, "thesis": 5}
     return sorted(entries, key=lambda item: (-int(item["fields"]["year"]),
                                             category_order[CATEGORIES[item["id"]][0]],
                                             item["fields"].get("author", "").casefold(),
@@ -109,7 +110,7 @@ def authors(value):
 
 def venue(entry):
     fields = entry["fields"]
-    source = fields.get("journal") or fields.get("booktitle") or fields.get("howpublished") or fields.get("publisher", "")
+    source = fields.get("journal") or fields.get("booktitle") or fields.get("howpublished") or fields.get("school") or fields.get("publisher", "")
     if entry["type"] == "article" and CATEGORIES[entry["id"]][0] == "review" and fields.get("publisher"):
         source += " (" + fields["publisher"] + ")"
     parts = [source] if source else []
@@ -178,14 +179,14 @@ def publication_section(entries, interactive=True):
         html = '''<section id="publications" class="section" aria-labelledby="publications-heading">
           <details class="publications-disclosure">
             <summary class="section-heading publications-summary"><h2 id="publications-heading">Publications &amp; talks<span class="publications-disclosure-icon" aria-hidden="true"></span></h2></summary>
-            <div class="publications-panel"><p class="section-lede">Research papers, conference contributions and teaching material.</p>'''
+            <div class="publications-panel"><p class="section-lede">Research papers, conference contributions, theses and teaching material.</p>'''
     else:
-        html = section_start("publications", "Publications &amp; talks", "Research papers, conference contributions and teaching material.")
+        html = section_start("publications", "Publications &amp; talks", "Research papers, conference contributions, theses and teaching material.")
     if interactive:
         counts = Counter(CATEGORIES[item["id"]][0] for item in entries)
         buttons = []
         for key, label in [("all", "All"), ("journal", "Journal articles"), ("conference", "Conference papers"),
-                           ("abstract", "Abstracts & talks"), ("teaching", "Teaching material"), ("review", "Manuscripts")]:
+                           ("abstract", "Abstracts & talks"), ("teaching", "Teaching material"), ("review", "Manuscripts"), ("thesis", "Theses")]:
             count = len(entries) if key == "all" else counts[key]
             buttons.append(f'<button type="button" class="filter-button{ " is-active" if key == "all" else ""}" data-filter="{key}" aria-pressed="{str(key == "all").lower()}">{escape(label)} <span>{count}</span></button>')
         html += f'''<div class="publications-controls" hidden>
